@@ -20,7 +20,7 @@ public class Student {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="email_name")
+	@Column(name="email")
 	private String email;
 	
 
@@ -28,10 +28,11 @@ public class Student {
 		
 	}
 
-	public Student(String firstName, String lastName, String email) {
+	public Student(String firstName, String lastName, String email, int id) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.id = id;
 	}
 
 	//Getters and Setters
