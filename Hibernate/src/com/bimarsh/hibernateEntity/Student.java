@@ -2,6 +2,8 @@ package com.bimarsh.hibernateEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ public class Student {
 	
 	// This attribute is primary key for the table 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
@@ -28,11 +31,10 @@ public class Student {
 		
 	}
 
-	public Student(String firstName, String lastName, String email, int id) {
+	public Student(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.id = id;
 	}
 
 	//Getters and Setters
