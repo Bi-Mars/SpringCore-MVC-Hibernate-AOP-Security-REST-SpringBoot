@@ -1,10 +1,13 @@
 package com.bimarsh.hibernateEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 // annotate class as entity
@@ -22,6 +25,20 @@ public class InstructorDetail {
 	
 	@Column(name="hobby")
 	private String hobby;
+	
+	// add new field for Bidirectional Relationship
+	/* mappedBy --> Check instructorDetail Property of Instructor class
+	 * 		@OneToOne(cascade=CascadeType.ALL)
+	 * //Which attribute is related?
+	 * 		@JoinColumn(name="instructor_detail_id")
+	 * // In database foreign key is configured to reference id field in instructor_detail table
+	 * 		private InstructorDetail instructorDetail;
+	 */
+	
+	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)
+	private Instructor instructor;
+	
+	
 	
 	//no-args constructor 
 	public InstructorDetail() {
@@ -56,6 +73,15 @@ public class InstructorDetail {
 
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
+	}
+
+	// getters and setters for Bidirectional Relationship
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 
 	@Override
