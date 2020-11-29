@@ -25,7 +25,12 @@ public class ReadInstructorDetail {
 			session.beginTransaction();	
 			
 			//get instructor_detail object
-			int instructorId = 2;
+			
+		//	int instructorId = 2;
+			
+			// break the system:
+			int instructorId = 299;
+			
 			InstructorDetail tempInstructorDetail = 
 					session.get(InstructorDetail.class, instructorId);
 			
@@ -40,7 +45,12 @@ public class ReadInstructorDetail {
 			session.getTransaction().commit();
 
 		}
+		catch(Exception exc) {
+			exc.printStackTrace();
+		}
 		finally {
+			//handle connection leak issue by closing session
+			session.close();
 			factory.close();
 		}
 
