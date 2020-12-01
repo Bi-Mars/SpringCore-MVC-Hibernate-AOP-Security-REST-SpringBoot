@@ -44,7 +44,7 @@ public class Instructor {
 	private InstructorDetail instructorDetail;
 	
 	//instructor and courses relationship
-	@OneToMany(fetch=FetchType.EAGER,
+	@OneToMany(fetch=FetchType.LAZY,
 				mappedBy="instructor",
 				cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 						CascadeType.REFRESH, CascadeType.DETACH}) // this mappedBy refers to property in Course class (check Course entity class)
