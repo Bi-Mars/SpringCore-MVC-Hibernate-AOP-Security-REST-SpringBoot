@@ -8,7 +8,7 @@ import com.bimarsh.hibernateEntity.Course;
 import com.bimarsh.hibernateEntity.Instructor;
 import com.bimarsh.hibernateEntity.InstructorDetail;
 
-public class CreateInstructor {
+public class CreateCourses {
 
 	public static void main(String[] args) {
 		
@@ -22,26 +22,24 @@ public class CreateInstructor {
 		Session session = factory.getCurrentSession();
 		
 		try {
-			
-			//create object
-			Instructor newInstructor = 
-					new Instructor("Susan", "Vegas", "vegasSusan@hmail.com" );
-			
-			InstructorDetail newInstructorDetail = 
-					new InstructorDetail(
-							"https://www.youtube.com/watch?v=fv7lvY5Wci0&ab_channel=DimitriVegas%26LikeMike",
-							"3 ARE LEGENDS!!!");
-		
-			// associate object --> Only in memory
-			newInstructor.setInstructorDetail(newInstructorDetail);
-			
+
 			//start transaction
 			session.beginTransaction();
+			// get Instructor from database
+			int id = 1;
+			Instructor instructor = session.get(Instructor.class, id);
 			
-			//save to database
-			// since Cascade.ALL --> Applies to newInstructorDetail
-			System.out.println("Saving Instructor: " + newInstructor);
-			session.save(newInstructor);			
+			//create some courses
+			Course course1 = new Course("Air Guitar - The ultimate Guitar Guide");
+			Course course2 = new Course("Option trading");
+			
+			//add courses to instructor  --> Associate course with instructor 
+			instructor.add(course1);
+			instructor.add(course2);
+			
+			// save the courses
+			session.save(course1);
+			session.save(course2);
 			
 			//commit transaction
 			session.getTransaction().commit();
