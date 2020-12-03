@@ -10,7 +10,7 @@ import com.bimarsh.hibernateEntity.InstructorDetail;
 import com.bimarsh.hibernateEntity.Review;
 import com.bimarsh.hibernateEntity.Student;
 
-public class ReadCoursesForBimarsh {
+public class DeleteOptionTradingCourse {
 
 	public static void main(String[] args) {
 		
@@ -30,10 +30,12 @@ public class ReadCoursesForBimarsh {
 			//start transaction
 			session.beginTransaction();
 			
-			// get student
-			int student_id = 1;
-			Student theStudent = session.get(Student.class, student_id);
-			System.out.println("\n Student: " + theStudent.getCourses());
+			// get course
+			int courseId = 1;
+			Course tempCourse = session.get(Course.class, courseId);
+			
+			//delete course
+			session.delete(tempCourse);
 					
 			//commit transaction
 			session.getTransaction().commit();
