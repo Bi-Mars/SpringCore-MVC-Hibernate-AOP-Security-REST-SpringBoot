@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bimarsh.spring.dao.CustomerDAO;
-import com.bimarsh.spring.entities.CustomerEntity;
+import com.bimarsh.spring.entities.Customer;
 
 @Controller
 @RequestMapping("/customer")
@@ -23,7 +23,7 @@ public class CustomerController {
 	public String listCustomers(Model customerModel) {
 		
 		//get customers from the DAO
-		List<CustomerEntity> customers = customerDAO.getCustomers();
+		List<Customer> customers = customerDAO.getCustomers();
 		
 		//add the customers to the model
 		customerModel.addAttribute("customers", customers); // provide attribute name and value

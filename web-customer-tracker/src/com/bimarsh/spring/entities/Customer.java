@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="customer")
-public class CustomerEntity {
+public class Customer{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class CustomerEntity {
 	private String email;
 	
 	//no-arg constructor
-	public CustomerEntity() {}
+	public Customer() {}
 	
 	//getters and setters
 	public int getId() {

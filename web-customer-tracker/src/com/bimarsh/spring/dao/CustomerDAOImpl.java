@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bimarsh.spring.entities.CustomerEntity;
+import com.bimarsh.spring.entities.Customer;
 
 @Repository // only for DAO implementation 
 public class CustomerDAOImpl implements CustomerDAO {
@@ -21,17 +21,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	
 	@Override
 	@Transactional // auto begin and commit transaction
-	public List<CustomerEntity> getCustomers() {
+	public List<Customer> getCustomers() {
 		
 		//get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();		
 		
 		//create a query
-		Query<CustomerEntity> theQuery =
-				currentSession.createQuery("from Customer", CustomerEntity.class);
+		Query<Customer> theQuery =
+				currentSession.createQuery("from Customer", Customer.class);
 		
 		//execute query and get result 
-		List<CustomerEntity> customers = theQuery.getResultList();
+		List<Customer> customers = theQuery.getResultList();
 		
 		//result the result
 		return customers;
