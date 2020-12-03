@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,6 +40,17 @@ public class Course {
 			   cascade=CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private List<Review> reviews;
+	
+	//relationship with students
+	@ManyToMany(fetch=FetchType.LAZY,
+				cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+					CascadeType.REFRESH, CascadeType.DETACH})
+	@JoinTable(
+			name="course_student",
+			joinColumns=@JoinColumn(name="course_id"), // joinColumns refer database table of this.class
+			inverseJoinColumns=@JoinColumn(name="student_id") // inverseJoinColumns refer database table that is other side of Many@Many relationship
+			)
+	private List<Student> students;
 	
 	//no-args constructor 
 	public Course() {}
@@ -88,6 +101,25 @@ public class Course {
 		reviews.add(theReview);
 	}
 	
+	
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	
+	//convenience method to add Student
+	public void addStudent(Student theStudent) {
+		
+		if(students == null) {
+			students = new ArrayList<>();
+		}
+		
+		students.add(theStudent);
+	}
+
 	@Override
 	public String toString() {
 		return "Course [id=" + id + ", title=" + title + "]";
