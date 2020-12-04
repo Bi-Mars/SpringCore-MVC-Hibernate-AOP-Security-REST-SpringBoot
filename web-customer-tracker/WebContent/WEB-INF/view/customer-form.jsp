@@ -34,7 +34,7 @@
  			<tbody>
  				<tr>
  					<td> <label> First Name: </label> </td>
- 					<td> <form:input path="firstName" /> </td>
+ 					<td> <form:input path="firstName" val/> </td>
  				</tr>
  				<tr>
  					<td> <label> Last Name: </label> </td>
