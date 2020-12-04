@@ -58,7 +58,8 @@
 					<!--  Display the update link - Use variable defined above -->
 					<a href="${updateLink}"> Update </a>
 					|
-					<a href="${deleteLink}"> Delete </a>
+					<a href="${deleteLink}"
+						onclick="if (!(confirm('Are you sure you want to delete?'))) return false"> Delete </a>
 				</td>
 			</tr>
 		</c:forEach>
