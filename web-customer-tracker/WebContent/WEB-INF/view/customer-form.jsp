@@ -30,11 +30,14 @@
  	
  	<form:form action="saveCustomer" modelAttribute="customer" method="POST">
  	
+ 	<!--  need to associate this data with customer id -->
+ 	<form:hidden path="id"/>
+ 	
  		<table>
  			<tbody>
  				<tr>
  					<td> <label> First Name: </label> </td>
- 					<td> <form:input path="firstName" val/> </td>
+ 					<td> <form:input path="firstName" /> </td>
  				</tr>
  				<tr>
  					<td> <label> Last Name: </label> </td>
