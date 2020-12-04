@@ -22,4 +22,11 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDAO.getCustomers();
 	}
 
+	@Override
+	@Transactional
+	public void saveCustomer(Customer theCustomer) {
+		//service layer talks to DAO talks to Hibernate API talks to database
+		customerDAO.saveCustomer(theCustomer);
+	}
+
 }
