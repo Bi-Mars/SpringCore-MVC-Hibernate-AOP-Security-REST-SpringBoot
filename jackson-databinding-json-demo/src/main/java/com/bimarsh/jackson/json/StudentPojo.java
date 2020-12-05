@@ -1,5 +1,8 @@
 package com.bimarsh.jackson.json;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class StudentPojo {
 	
 	//add attributes
