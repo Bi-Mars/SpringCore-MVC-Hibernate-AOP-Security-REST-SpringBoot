@@ -8,6 +8,8 @@ public class StudentPojo {
 	private String firstName;
 	private String lastName;
 	private boolean active;
+	private AddressPojo address;
+	private String[] languages;
 	
 	//no-args constructor 
 	public StudentPojo() {}
@@ -35,6 +37,22 @@ public class StudentPojo {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public AddressPojo getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressPojo address) {
+		this.address = address;
+	}
+
+	public String[] getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(String[] languages) {
+		this.languages = languages;
 	}
 	
 	
