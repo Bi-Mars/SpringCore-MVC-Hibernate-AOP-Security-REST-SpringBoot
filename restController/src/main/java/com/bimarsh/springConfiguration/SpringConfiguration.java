@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.bimarsh.springConfiguration")
+@ComponentScan("com.bimarsh")
 public class SpringConfiguration {
 
 }
