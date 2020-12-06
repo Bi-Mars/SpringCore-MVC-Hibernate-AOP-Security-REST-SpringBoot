@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +34,14 @@ public class StudentRestController {
 	public List<Student> getStudent() {
 		//no need to call because Spring will call @PostConstruct before initializing the bean
 		return students;
+	}
+	
+	//define endpoint for "/students/{studentId}" - return student at index
+	@RequestMapping("/students/{studentId}")
+	public Student getStudent(@PathVariable int studentId) {
+		
+		//just index into the list ... keeping it simple
+		
+		return students.get(studentId);
 	}
 }
