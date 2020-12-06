@@ -35,35 +35,50 @@ public class StudentRestController {
 
 	@GetMapping("/students")
 	public List<Student> getStudent() {
-		//no need to call because Spring will call @PostConstruct before initializing the bean
+		// no need to call because Spring will call @PostConstruct before initializing
+		// the bean
 		return students;
 	}
-	
-	//define endpoint for "/students/{studentId}" - return student at index
+
+	// define endpoint for "/students/{studentId}" - return student at index
 	@RequestMapping("/students/{studentId}")
 	public Student getStudent(@PathVariable int studentId) {
-		
-		//just index into the list ... keeping it simple
-		
+
+		// just index into the list ... keeping it simple
+
 		// check the studentId against list size
-		if(studentId >= students.size() || studentId < 0) {
+		if (studentId >= students.size() || studentId < 0) {
 			throw new StudentNotFoundException("Student not found - " + studentId);
 		}
-		
+
 		return students.get(studentId);
 	}
-	
-	//add an exception handler using @ExceptionHandler
-	
+
+	// add an exception handler using @ExceptionHandler
+
 	@ExceptionHandler
-	public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exc){
+	public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exc) {
 		// create a studentErrorResponse
 		StudentErrorResponse error = new StudentErrorResponse();
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setMessage(exc.getMessage());
 		error.setTimeStamp(System.currentTimeMillis());
-		
-		//return ResponseEntity
+
+		// return ResponseEntity
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+
+	// add generic exception
+	@ExceptionHandler
+	public ResponseEntity<StudentErrorResponse> handleException(Exception exc) {
+		
+		// create a studentErrorResponse
+		StudentErrorResponse error = new StudentErrorResponse();
+		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+
+		// return ResponseEntity
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 }
