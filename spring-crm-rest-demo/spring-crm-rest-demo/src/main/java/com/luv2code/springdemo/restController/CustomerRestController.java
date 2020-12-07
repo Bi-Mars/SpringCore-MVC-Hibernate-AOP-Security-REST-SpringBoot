@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,6 +41,20 @@ public class CustomerRestController {
 		
 		return theCustomer;
 		
+	}
+	 
+	//add mapping for POST/customers - add new customer --> Same Mapping but different request
+	@PostMapping("/customers")
+	public Customer addCustomer(@RequestBody Customer customer) {
+		
+		//also just in case the user/client pass an id in JSON ... set id to 0
+		// this force a save of a new item ... instead of update
+		customer.setId(0); // insert not update
+		
+		// Delegate the call to Service layer, which uses DAO to communicate to database using Hibernate 
+		customerService.saveCustomer(customer);
+		
+		return customer;
 	}
 
 }
