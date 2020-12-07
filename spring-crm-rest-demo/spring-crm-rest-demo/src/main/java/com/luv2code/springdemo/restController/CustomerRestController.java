@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ import com.luv2code.springdemo.service.CustomerService;
 @RequestMapping("/api")
 public class CustomerRestController {
 	
-	//Initialize Service Class
+	//Initialize Service Class. Service Class will use DAO class to talk to database using Hibernate 
 	@Autowired
 	private CustomerService customerService;
 	
@@ -24,6 +25,14 @@ public class CustomerRestController {
 	public List<Customer> getCustomers(){
 		
 		return customerService.getCustomers();
+	}
+	
+	//add mapping for GET/customers/{customerId}
+	@GetMapping("/customers/{customerId}")
+	public Customer getCustomer(@PathVariable 	int customerId) {
+		
+		return customerService.getCustomer(customerId);
+		
 	}
 
 }
