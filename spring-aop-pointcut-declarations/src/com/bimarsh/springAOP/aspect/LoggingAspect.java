@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 
-	//this is where we add all of our related advices for logging
 	
 	// create point cut declaration
 	@Pointcut("execution (* com.bimarsh.springAOP.dao.*.*(..))")
@@ -20,6 +19,11 @@ public class LoggingAspect {
 	@Before("forDaoPackage()") 
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n =============>>>> Executing @Before advice on add *");
+	}
+	
+	@Before("forDaoPackage()")
+	public void performApiAnalytics() {
+		System.out.println("\n =============>>>> Performing API analytics");
 	}
 	
 }
