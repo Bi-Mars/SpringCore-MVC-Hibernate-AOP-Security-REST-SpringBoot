@@ -19,6 +19,10 @@ public class MainAOP {
 		//call the business method
 		theAccountDAO.addAccount();
 		
+		//make another call to the method to check if @Before runs again
+		System.out.println("\n----------------- Let's call it again ----------------\n");
+		theAccountDAO.addAccount();
+		
 		//close the context
 		context.close();
 
