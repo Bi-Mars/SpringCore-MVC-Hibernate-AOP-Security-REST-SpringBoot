@@ -21,14 +21,12 @@ public class MainAOP {
 		MembershipDAO theMembershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 		
 		//call the business method
-		theAccountDAO.addAccount(); 
+		Account myAccount = new Account();
+		theAccountDAO.addAccount(myAccount);
 		
 		//call the membership business method
 		theMembershipDAO.addSillyMember();
 		
-		//make another call to the method to check if @Before runs again
-		System.out.println("\n---------------------------------------- Let's call it again -------------------------------------------------\n");
-		theAccountDAO.addAccount();
 		
 		//close the context
 		context.close();
