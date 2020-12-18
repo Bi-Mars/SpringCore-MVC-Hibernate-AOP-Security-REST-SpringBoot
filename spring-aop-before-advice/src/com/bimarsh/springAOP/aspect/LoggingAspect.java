@@ -12,7 +12,7 @@ public class LoggingAspect {
 	//this is where we add all of our related advices for logging
 	
 	//provide method signature
-	@Before("execution(public void addAccount())") // run the method below, before "public void addAccount" is executed
+	@Before("execution(public void com.bimarsh.springAOP.dao.AccountDAO.addAccount())") // run the method below, before "public void addAccount" is executed
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n =============>>>> Executing @Before advice on addAccount()");
 	}
